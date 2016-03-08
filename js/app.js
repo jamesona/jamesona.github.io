@@ -11,7 +11,7 @@
 
 	require(['jquery', 'pouch', 'app'], function($, db, app){
 		require(['views/index'], function(a){
-			console.log(a)
+			console.log(a.getHello())
 		})
 	})
 })()
