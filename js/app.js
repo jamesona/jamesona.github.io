@@ -8,6 +8,6 @@
 	})
 
 	require(['jquery', 'pouch', 'app'], function($, db, app){
-
+		app = this
 	})
 })()
