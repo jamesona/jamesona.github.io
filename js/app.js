@@ -8,6 +8,8 @@
 	})
 
 	require(['jquery', 'pouch', 'app'], function($, db, app){
-		console.log(this)
+		require(['views/index'], function(a){
+			console.log(a)
+		})
 	})
 })()
