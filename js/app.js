@@ -7,7 +7,7 @@
 		}
 	})
 
-	app = require(['jquery', 'pouch', 'app'], function($, db, app){
-		console.log(app)
+	require(['jquery', 'pouch', 'app'], function($, db, app){
+		console.log(this)
 	})
 })()
