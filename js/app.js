@@ -3,13 +3,12 @@
 		baseUrl: 'js/',
 		paths: {
 			'jquery': 'jquery-2.2.1.min',
-			'pouch': 'pouchdb-5.3.0.min',
 			'views': './views',
 			'ui': './ui'
 		}
 	})
 
-	require(['jquery', 'pouch', 'app'], function($, db, app){
+	require(['jquery', 'app'], function($, db){
 		require(['views/index'], function(a){
 			console.log(a.getHello())
 		})
