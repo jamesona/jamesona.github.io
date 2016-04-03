@@ -8,9 +8,31 @@
 		}
 	})
 
-	require(['jquery', 'app'], function($, db){
-		require(['views/index'], function(a){
-			console.log(a.getHello())
+	Object.defineProperty(Object.prototype, 'forEach', { 
+		value: function() {
+			var self = this
+			Object.keys(self).forEach(function(key, i){
+				if (typeof cb == 'function') cb(key, self[key], i)
+			})
+		},
+		enumerable : false
+	})
+	Object.defineProperty(Object.prototype, 'isObject', { 
+		value: function() {
+			return this.constructor === Object
+		},
+		enumerable : false
+	})
+	Object.defineProperty(Object.prototype, 'isArray', { 
+		value: function() {
+			return this.constructor === Array
+		},
+		enumerable : false
+	})
+
+	require(['jquery', 'app'], function($, app){
+		require(['views/code'], function(view) {
+			
 		})
 	})
 })()

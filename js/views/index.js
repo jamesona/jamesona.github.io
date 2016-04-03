@@ -1,8 +1,5 @@
 define(function(){
 	"use strict"
-	return {
-		getHello: function() {
-			return "Hello World"
-		}
-	}
+	document.title = "You loaded the index view!"
+	$(document.body).empty()
 })

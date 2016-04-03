@@ -1,4 +1,4 @@
-define(function(){
+define('ui/Element', function(){
 	"use strict"
 
 	function Element(type) {
@@ -10,4 +10,6 @@ define(function(){
 		self.e = $('<'+type+'></'+type+'>')
 		return self.e
 	}
+
+	return Element
 })

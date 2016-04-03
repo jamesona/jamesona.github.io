@@ -1,6 +1,6 @@
-define(function(){
+define('ui/Table', ['ui/Element'], function(Element){
 	"use strict"
-	var Element = require('ui/element')
+
 	function Table(data, useHeaders) {
 		var self = this
 		if (!(this instanceof List)) {
@@ -9,7 +9,10 @@ define(function(){
 		}
 
 		self.e = new Element('table')
-		self.data = {}
+		self.head = $(self.e).append('<thead></thead>')
+		self.body = $(self.e).append('<tbody></tbody>')
+		self.headers = []
+		self.rows = []
 
 		if (data && typeof data != "object") {
 			throw new TypeError('Table data must be an object or multi-dimensional array; received '+typeof(data))
@@ -18,16 +21,9 @@ define(function(){
 
 		if (data) {
 			if (data.constructor === Object)
-				if (data.headers) {
-					self.headers = data.headers
-					delete data.headers
-				}
-				if (data.rows) {
-					self.rows = data.rows
-					delete data.rows
-				}
-				Object.keys(data).forEach(function(k, i){
-					self.rows[i] = data[k]
+				data.forEach(function(k, v, i){
+					self.headers.push(k)
+					self.rows.push(v)
 				})
 			else {
 				if (useHeaders) {
@@ -45,5 +41,32 @@ define(function(){
 
 	Table.prototype = {
 		constructor: Table,
+		draw: function(){
+			var self = this
+		},
+		addRow: function(data, i){
+			var self = this
+
+			if (data.constructor === Object) {
+				var input = data, data = []
+
+			}
+
+			if (i)
+				self.rows.splice(i, 0, data)
+			else
+				self.rows.push(data)
+		},
+		removeRow: function(key){
+			var self = this
+		},
+		addColumn: function(data, i){
+			var self = this
+		},
+		removeColumn: function(key){
+			var self = this
+		},
 	}
+	
+	return Table
 })

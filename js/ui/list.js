@@ -1,7 +1,7 @@
-define(function(){
+define('ui/List', ['ui/Element'], function(Element){
 	"use strict"
-	var Element = require('ui/element')
-	function List(type, options) {
+
+	function List(type, items) {
 		var self = this
 		if (!(this instanceof List)) {
 			throw new Error('List constructor cannot be called as a function')
@@ -14,14 +14,15 @@ define(function(){
 		
 		self.type = type
 		self.e = new Element(self.type)
+		$(self.e).data('c', self)
+		self.items = []
 
-		if (typeof options == "object") {
-			if (options.constructor === Object)
-				self.options = options
+		if (typeof items == "object") {
+			if (items.isArray())
+				self.items = items
 			else {
-				self.options = {}
-				options.forEach(function(v,i) {
-					self.options[i] = v
+				items.forEach(function(k, v, i) {
+					self.items[i] = v
 				})
 			}
 		}
@@ -32,33 +33,40 @@ define(function(){
 	List.prototype = {
 		constructor: List,
 		propagate: function(){
-			var self = this, options = self.options, list = $(self.e)
+			var self = this, items = self.items, list = $(self.e)
 
 			list.empty()
-			for (var option in self.options) {
-				var item = $('<li>'+options[option]+'</li>')
+			
+			items.forEach(function(v, i){
+				var item = $('<li>'+v+'</li>')
 				list.append(item)
-			}
+			})
+			
 			return self.e
 		},
-		addItem: function(key, value, prop){
+		addItem: function(value, index, prop){
 			var self = this
-			if (!value) value = key
-			self.options[key] = value
-			if (prop) {
+
+			if (typeof index == 'number')
+				self.items[index] = value
+			else
+				self.items.push(value)
+			if (prop || (typeof index == 'bool' && index)) {
 				self.propagate()
 				return self.e
 			}
-			return self.options
+			return self.items
 		},
-		removeItem: function(key, prop){
+		removeItem: function(index, prop){
 			var self = this
-			delete self.options[key]
+			self.items.splice(index, 1)
 			if (prop) {
 				self.propagate()
 				return self.e
 			}
-			return self.options
+			return self.items
 		}
 	}
+
+	return List
 })
