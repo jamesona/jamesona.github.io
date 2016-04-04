@@ -31,7 +31,7 @@
 	})
 
 	require(['jquery', 'app'], function($, app){
-		require(['views/code'], function(view) {
+		require(['views/index'], function(view) {
 			
 		})
 	})
