@@ -3,8 +3,6 @@
 		baseUrl: 'js/',
 		paths: {
 			'jquery': 'jquery-2.2.1.min',
-			'views': './views',
-			'ui': './ui'
 		}
 	})
 
@@ -31,8 +29,9 @@
 	})
 
 	require(['jquery', 'app'], function($, app){
-		require(['views/index'], function(view) {
-			
+		require(['post'], function(PostController){
+			post = new PostController()
+			console.log(post)
 		})
 	})
 })()
