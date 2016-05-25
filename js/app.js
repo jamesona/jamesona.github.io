@@ -1,9 +1,6 @@
 (function(){
 	require.config({
 		baseUrl: 'js/',
-		paths: {
-			'jquery': 'jquery-2.2.1.min',
-		}
 	})
 
 	Object.defineProperty(Object.prototype, 'forEach', { 
@@ -28,7 +25,7 @@
 		enumerable : false
 	})
 
-	require(['jquery', 'app'], function($, app){
+	require(['app', 'request'], function(app, request){
 		require(['post'], function(PostController){
 			post = new PostController()
 			console.log(post)
