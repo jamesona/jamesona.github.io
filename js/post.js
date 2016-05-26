@@ -3,24 +3,41 @@ define(['config', 'marked'], function(config, marked){
 
 	function PostController(){
 		var self = this
-
-		self.url = 'https://api.github.com/repos/'+config.github.user+'/'+
-			config.github.repo+'/contents/'+config.github.postDir
-
-		$.get(self.url, function(data) {
-			self.data = data
-		})
+		self.gistURL = 'https://api.github.com/users/'+config.github.user+'/gists'
 	}
 
 	PostController.prototype = {
 		constructor: PostController,
 		list: function(){
+			var self = this
 
 		},
-		fetch: function(url, cb){
+		fetch: function(app, cb){
+			var self = this,
+				xhr = new XMLHttpRequest()
 
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === xhr.DONE) {
+					if (xhr.status === 200) {
+						app.posts = JSON.parse(xhr.responseText).filter((obj)=>{
+							if (obj.description == 'Blog Posts')
+								return true
+							return false
+						})[0].files
+						if (typeof cb == 'function') cb()
+					}
+				}
+			}
+
+			xhr.open('GET', self.gistURL)
+			xhr.send(null)
 		},
 		update: function(cb){
+			var self = this
+
+		},
+		submit: function(cb){
+			var self = this
 
 		},
 		parse: function(raw){

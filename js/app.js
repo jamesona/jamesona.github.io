@@ -1,4 +1,4 @@
-(function(){
+(function(app){
 	require.config({
 		baseUrl: 'js/',
 	})
@@ -25,10 +25,12 @@
 		enumerable : false
 	})
 
-	require(['app', 'request'], function(app, request){
-		require(['post'], function(PostController){
-			post = new PostController()
-			console.log(post)
-		})
+	require(['config', 'post'], function(Config, PostController){
+		app.config = Config
+		app.postController = new PostController()
+		app.posts = app.postController.fetch(app)
 	})
-})()
+})((function(){
+	window.app={}
+	return window.app
+})())
