@@ -7,7 +7,8 @@
 		value: function() {
 			var self = this
 			Object.keys(self).forEach(function(key, i){
-				if (typeof cb == 'function') cb(key, self[key], i)
+				if (self.hasOwnProperty(key) && typeof cb == 'function')
+					cb(key, self[key], i)
 			})
 		},
 		enumerable : false
