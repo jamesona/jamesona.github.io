@@ -2,6 +2,9 @@
 	<head>
 		<title>Jameson Aranda</title>
 		<link rel="stylesheet" href="css/index.css" />
+		<script>
+			document.querySelector('#year').innerHTML = new Date().getFullYear()
+		</script>
 	</head>
 	<body>
 		<main class="code">
@@ -16,7 +19,7 @@
 			</section>
 			<section>
 				<title>COPYRIGHT</title>
-				<content>jameson is Copyright (C) 1992-2017</content>
+				<content>jameson is Copyright (C) 1992-<span id="year">2017</span></content>
 			</section>
 			<section>
 				<title>DESCRIPTION</title>
@@ -156,7 +159,7 @@
 					</ul>
 				</content>
 			</section>
-			<footer><span class="left">Jameson Aranda</span> 2016-10-06 <span class="right">JAMESON(1)</span></footer>
+			<footer><span class="left">Jameson Aranda</span> 2017-01-04 <span class="right">JAMESON(1)</span></footer>
 		</main>
 	</body>
 	<script data-main="js/app" src="js/require.js"></script>
