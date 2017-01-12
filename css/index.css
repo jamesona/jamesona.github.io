@@ -15,6 +15,13 @@ ul {
 	margin-top: 1rem;
 }
 
+@media print {
+	* {
+		font-size: 9px !important;
+		color: black !important;
+	}
+}
+
 body {
 	background: #272822;
 	font-size: 10px;
