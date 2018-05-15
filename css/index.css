@@ -6,6 +6,10 @@
 	box-sizing: border-box;
 }
 
+a:visited {
+	color: inherit;
+}
+
 li {
 	list-style: none;
 	margin-top: 0.5rem;
